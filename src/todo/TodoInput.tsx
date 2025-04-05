@@ -1,4 +1,4 @@
-import { Button, Form, InputGroup } from 'solid-bootstrap';
+import styles from './TodoInput.module.scss';
 
 type TodoInputProps = {
   onAddTodo: (text: string) => void;
@@ -7,26 +7,28 @@ type TodoInputProps = {
 export function TodoInput(props: TodoInputProps) {
   let input: HTMLInputElement | undefined;
 
-  const handleSubmitTodo = (event: Event) => {
-    event.preventDefault();
+  const addTodo = () => {
     if (!input?.value.trim()) return;
     props.onAddTodo(input.value.trim());
     input.value = '';
   };
 
   return (
-    <Form onSubmit={handleSubmitTodo}>
-      <Form.Group class="mb-3" controlId="todoInput">
-        <InputGroup>
-          <Form.Control
-            ref={input}
-            type="input"
-            placeholder="I need to do..."
-            maxLength={128}
-          />
-          <Button onClick={handleSubmitTodo}>+</Button>
-        </InputGroup>
-      </Form.Group>
-    </Form>
+    <div class={styles['todo-input__wrapper']}>
+      <input
+        ref={input}
+        class={styles['todo-input']}
+        type={'text'}
+        placeholder={'I need to do...'}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            addTodo();
+          }
+        }}
+      />
+      <button class={'todo-input__add'} onClick={addTodo}>
+        Add
+      </button>
+    </div>
   );
 }

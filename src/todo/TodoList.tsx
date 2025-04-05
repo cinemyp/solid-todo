@@ -1,7 +1,8 @@
 import { Accessor, For } from 'solid-js';
-import { Todo } from './types';
-import { Button, ListGroup } from 'solid-bootstrap';
 import clsx from 'clsx';
+
+import { Todo } from './types';
+import styles from './TodoList.module.scss';
 
 export function TodoList(props: {
   items: Accessor<Todo[]>;
@@ -9,43 +10,41 @@ export function TodoList(props: {
   onTodoToggle: (id: Todo['id']) => void;
 }) {
   return (
-    <ListGroup class={'todo-List'} variant={'flush'}>
+    <ul class={styles['todo-list']}>
       <For each={props.items()}>
         {(item) => {
           return (
-            <ListGroup.Item>
-              <div
-                class={
-                  'todo-List__item flex flex-row justify-between items-center gap-8'
-                }
-                data-todo-id={item.id}
-              >
+            <li>
+              <div class={styles['todo-list__item']} data-todo-id={item.id}>
+                <input
+                  class={styles['todo-list__checkbox']}
+                  type={'checkbox'}
+                  checked={item.done}
+                  onChange={() => {
+                    props.onTodoToggle(item.id);
+                  }}
+                />
                 <span
                   class={clsx(
-                    'max-w-80 truncate',
-                    item.done && 'line-through text-stone-400'
+                    styles['todo-list__text'],
+                    item.done && styles['done']
                   )}
                 >
                   {item.text}
                 </span>
-                <Button
-                  variant={clsx({
-                    'outline-dark': !item.done,
-                    'outline-success': item.done,
-                  })}
-                  title={item.done ? 'Undone' : 'Done'}
-                  size={'sm'}
+                <button
+                  class={styles['todo-list__remove']}
                   onClick={() => {
-                    props.onTodoToggle(item.id);
+                    props.onItemRemove(item.id);
                   }}
                 >
-                  {item.done ? 'Undone' : 'Done'}
-                </Button>
+                  Remove
+                </button>
               </div>
-            </ListGroup.Item>
+            </li>
           );
         }}
       </For>
-    </ListGroup>
+    </ul>
   );
 }

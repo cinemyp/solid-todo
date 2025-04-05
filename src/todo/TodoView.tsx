@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { TodoList } from './TodoList';
 import { TodoInput } from './TodoInput';
 import { Todo } from './types';
+import styles from './TodoView.module.scss';
 
 export function TodoView() {
   const [todos, setTodos] = createSignal<Todo[]>([]);
@@ -28,18 +29,15 @@ export function TodoView() {
   };
 
   return (
-    <div
-      class={
-        'todo-View grid grid-cols-[1fr_1px_1fr] h-full gap-24 items-center py-12'
-      }
-    >
-      <TodoInput onAddTodo={handleAddTodo} />
-      <div class={'border border-1 border-solid w-0 h-full'}></div>
-      <TodoList
-        items={todos}
-        onItemRemove={handleTodoRemove}
-        onTodoToggle={handleTodoToggle}
-      />
+    <div class={styles['todo-view']}>
+      <div class={styles['todo-view__content']}>
+        <TodoInput onAddTodo={handleAddTodo} />
+        <TodoList
+          items={todos}
+          onItemRemove={handleTodoRemove}
+          onTodoToggle={handleTodoToggle}
+        />
+      </div>
     </div>
   );
 }
