@@ -1,14 +1,39 @@
 import { Accessor, For } from 'solid-js';
 import { Todo } from './types';
+import { Button, ListGroup } from 'solid-bootstrap';
 
-export function TodoList(props: { items: Accessor<Todo[]> }) {
+export function TodoList(props: {
+  items: Accessor<Todo[]>;
+  onItemRemove: (id: Todo['id']) => void;
+}) {
   return (
-    <div class={'todo-List'}>
+    <ListGroup class={'todo-List'} variant={'flush'}>
       <For each={props.items()}>
         {(item) => {
-          return <div>{item.text}</div>;
+          return (
+            <ListGroup.Item>
+              <div
+                class={
+                  'todo-List__item flex flex-row justify-between items-center'
+                }
+                data-todo-id={item.id}
+              >
+                <span>{item.text}</span>
+                <Button
+                  variant={'outline-danger'}
+                  title={'Remove'}
+                  size={'sm'}
+                  onClick={() => {
+                    props.onItemRemove(item.id);
+                  }}
+                >
+                  -
+                </Button>
+              </div>
+            </ListGroup.Item>
+          );
         }}
       </For>
-    </div>
+    </ListGroup>
   );
 }

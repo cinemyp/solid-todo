@@ -12,7 +12,8 @@
     "@tailwindcss/vite": "^4.0.15",
     "solid-bootstrap": "^1.0.21",
     "solid-js": "^1.9.5",
-    "tailwindcss": "^4.0.15"
+    "tailwindcss": "^4.0.15",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "typescript": "~5.7.2",
