@@ -14,11 +14,11 @@ export function TodoList(props: {
             <ListGroup.Item>
               <div
                 class={
-                  'todo-List__item flex flex-row justify-between items-center'
+                  'todo-List__item flex flex-row justify-between items-center gap-8'
                 }
                 data-todo-id={item.id}
               >
-                <span>{item.text}</span>
+                <span class={'max-w-80 truncate'}>{item.text}</span>
                 <Button
                   variant={'outline-danger'}
                   title={'Remove'}

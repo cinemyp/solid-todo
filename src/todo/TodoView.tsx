@@ -17,8 +17,13 @@ export function TodoView() {
   };
 
   return (
-    <div class={'todo-View'}>
+    <div
+      class={
+        'todo-View grid grid-cols-[1fr_1px_1fr] h-full gap-24 items-center py-12'
+      }
+    >
       <TodoInput onAddTodo={handleAddTodo} />
+      <div class={'border border-1 border-solid w-0 h-full'}></div>
       <TodoList items={todos} onItemRemove={handleTodoRemove} />
     </div>
   );
