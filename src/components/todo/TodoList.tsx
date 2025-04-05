@@ -1,10 +1,11 @@
 import { Accessor, For } from 'solid-js';
 import clsx from 'clsx';
 
-import { Todo } from './types';
+import { Todo } from '../../shared/types/todo';
 import styles from './TodoList.module.scss';
-import { Button } from '../ui/Button';
-import { Icon } from '../ui/Icon';
+import { Button } from '../ui/Button/Button';
+import { Icon } from '../ui/Icon/Icon';
+
 type TodoListProps = {
   items: Accessor<Todo[]>;
   onItemRemove: (id: Todo['id']) => void;

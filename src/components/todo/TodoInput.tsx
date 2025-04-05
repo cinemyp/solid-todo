@@ -1,6 +1,6 @@
 import styles from './TodoInput.module.scss';
-import { Button } from '../ui/Button';
-import { Icon } from '../ui/Icon';
+import { Button } from '#ui/Button/Button';
+import { Icon } from '#ui/Icon/Icon';
 
 type TodoInputProps = {
   onAddTodo: (text: string) => void;
