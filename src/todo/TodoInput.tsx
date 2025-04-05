@@ -6,8 +6,16 @@ type TodoInputProps = {
 
 export function TodoInput(props: TodoInputProps) {
   let input: HTMLInputElement | undefined;
+
+  const handleSubmitTodo = (event: Event) => {
+    event.preventDefault();
+    if (!input?.value.trim()) return;
+    props.onAddTodo(input.value.trim());
+    input.value = '';
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmitTodo}>
       <Form.Group class="mb-3" controlId="todoInput">
         <InputGroup>
           <Form.Control
@@ -16,15 +24,7 @@ export function TodoInput(props: TodoInputProps) {
             placeholder="I need to do..."
             maxLength={128}
           />
-          <Button
-            onClick={() => {
-              if (!input?.value.trim()) return;
-              props.onAddTodo(input.value.trim());
-              input.value = '';
-            }}
-          >
-            +
-          </Button>
+          <Button onClick={handleSubmitTodo}>+</Button>
         </InputGroup>
       </Form.Group>
     </Form>
