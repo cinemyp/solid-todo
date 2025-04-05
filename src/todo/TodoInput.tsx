@@ -14,6 +14,7 @@ export function TodoInput(props: TodoInputProps) {
             ref={input}
             type="input"
             placeholder="I need to do..."
+            maxLength={128}
           />
           <Button
             onClick={() => {

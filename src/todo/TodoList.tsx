@@ -1,10 +1,12 @@
 import { Accessor, For } from 'solid-js';
 import { Todo } from './types';
 import { Button, ListGroup } from 'solid-bootstrap';
+import clsx from 'clsx';
 
 export function TodoList(props: {
   items: Accessor<Todo[]>;
   onItemRemove: (id: Todo['id']) => void;
+  onTodoToggle: (id: Todo['id']) => void;
 }) {
   return (
     <ListGroup class={'todo-List'} variant={'flush'}>
@@ -18,16 +20,26 @@ export function TodoList(props: {
                 }
                 data-todo-id={item.id}
               >
-                <span class={'max-w-80 truncate'}>{item.text}</span>
+                <span
+                  class={clsx(
+                    'max-w-80 truncate',
+                    item.done && 'line-through text-stone-400'
+                  )}
+                >
+                  {item.text}
+                </span>
                 <Button
-                  variant={'outline-danger'}
-                  title={'Remove'}
+                  variant={clsx({
+                    'outline-dark': !item.done,
+                    'outline-success': item.done,
+                  })}
+                  title={item.done ? 'Undone' : 'Done'}
                   size={'sm'}
                   onClick={() => {
-                    props.onItemRemove(item.id);
+                    props.onTodoToggle(item.id);
                   }}
                 >
-                  -
+                  {item.done ? 'Undone' : 'Done'}
                 </Button>
               </div>
             </ListGroup.Item>
