@@ -1,9 +1,9 @@
 import { createSignal } from 'solid-js';
 import { v4 as uuid } from 'uuid';
 
+import { Todo } from '#shared/types/todo';
 import { TodoList } from './TodoList';
 import { TodoInput } from './TodoInput';
-import { Todo } from './types';
 import styles from './TodoView.module.scss';
 
 export function TodoView() {

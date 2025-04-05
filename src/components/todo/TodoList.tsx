@@ -1,10 +1,10 @@
 import { Accessor, For } from 'solid-js';
 import clsx from 'clsx';
+import { Icon } from '#ui/Icon/Icon';
+import { Button } from '#ui/Button/Button';
+import { Todo } from '#shared/types/todo';
 
-import { Todo } from '../../shared/types/todo';
 import styles from './TodoList.module.scss';
-import { Button } from '../ui/Button/Button';
-import { Icon } from '../ui/Icon/Icon';
 
 type TodoListProps = {
   items: Accessor<Todo[]>;
