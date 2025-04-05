@@ -3,8 +3,8 @@ import clsx from 'clsx';
 
 import { Todo } from './types';
 import styles from './TodoList.module.scss';
-import { Icon } from './Icon';
-
+import { Button } from '../ui/Button';
+import { Icon } from '../ui/Icon';
 type TodoListProps = {
   items: Accessor<Todo[]>;
   onItemRemove: (id: Todo['id']) => void;
@@ -35,12 +35,9 @@ export function TodoList(props: TodoListProps) {
                 >
                   {item.text}
                 </span>
-                <button
-                  class={styles['todo-list__remove']}
-                  onClick={() => props.onItemRemove(item.id)}
-                >
+                <Button onClick={() => props.onItemRemove(item.id)}>
                   <Icon name="trash" size={20} />
-                </button>
+                </Button>
               </div>
             </li>
           );

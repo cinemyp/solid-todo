@@ -1,6 +1,3 @@
-import { JSX } from 'solid-js';
-import styles from './Icon.module.scss';
-
 type IconName = 'plus' | 'trash';
 
 interface IconProps {
