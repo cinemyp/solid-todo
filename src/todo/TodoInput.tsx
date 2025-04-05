@@ -1,4 +1,5 @@
 import styles from './TodoInput.module.scss';
+import { Icon } from './Icon';
 
 type TodoInputProps = {
   onAddTodo: (text: string) => void;
@@ -26,8 +27,8 @@ export function TodoInput(props: TodoInputProps) {
           }
         }}
       />
-      <button class={'todo-input__add'} onClick={addTodo}>
-        Add
+      <button class={styles['todo-input__button']} onClick={addTodo}>
+        <Icon name="plus" size={20} />
       </button>
     </div>
   );
